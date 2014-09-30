@@ -15,8 +15,22 @@ class Geo {
      * @var float[]
      */
     protected $radii = array(
+        // metric
         'km' => 6371,
+        'hm' => 63710, // km * 10
+        'dam' => 637100, // km * 100
+        'm' => 6371000, // km * 1000
+        'dm' => 63710000, // km * 10000
+        'cm' => 637100000, // km * 100000
+        'mm' => 6371000000, // km * 1000000
+
+        // imperial (https://en.wikipedia.org/wiki/Imperial_units)
         'mi' => 3959,
+        'fur' => 31672, // mi * 8
+        'ch' => 316720, // mi * 80
+        'yd' => 6967840, // mi * 1760
+        'ft' => 20903520, // mi * 5280
+        'in' => 250842240, // mi * 63360
     );
 
     /**
@@ -30,7 +44,7 @@ class Geo {
     protected $radius;
 
     /**
-     * @param string[optional] $unit km (kilometers) or mi (miles)
+     * @param string[optional] $unit e.g. km (kilometers) or mi (miles)
      * @throws Exception
      */
     public function __construct($unit = 'km') {
@@ -64,7 +78,7 @@ class Geo {
      * @see http://en.wikipedia.org/wiki/Great-circle_distance
      * @param Coordinate $coord1 First coordinate
      * @param Coordinate $coord2 Second coordinate
-     * @return float Actual distance in human readable format (km or mi)
+     * @return float Actual distance in human readable format (e.g. km or mi)
      */
     public function distance(Coordinate $coord1, Coordinate $coord2) {
         // convert latitude/longitude degrees for both coordinates
@@ -99,7 +113,7 @@ class Geo {
      * :nelng being $bounds->ne->longitude
      *
      * @param Coordinate $coord Coordinate to generate bounds for
-     * @param float $distance Dinstance in human readable format (km/mi)
+     * @param float $distance Dinstance in human readable format (e.g. km or mi)
      * @return Bounds
      */
     public function bounds(Coordinate $coord, $distance) {
