@@ -1,0 +1,22 @@
+{
+    "name": "matthiasmullie/geo",
+    "type": "library",
+    "description": "Geography helper",
+    "homepage": "https://github.com/matthiasmullie/geo",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Matthias Mullie",
+            "homepage": "http://www.mullie.eu",
+            "email": "geo@mullie.eu",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.0",
+        "ext-pcre": "*"
+    },
+    "autoload": {
+        "classmap": [""]
+    }
+}
