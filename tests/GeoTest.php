@@ -3,7 +3,6 @@
 require_once __DIR__.'/../Geo.php';
 require_once __DIR__.'/../Coordinate.php';
 require_once __DIR__.'/../Bounds.php';
-//require_once 'PHPUnit/Framework/TestCase.php';
 
 use MatthiasMullie\Geo;
 
