@@ -89,8 +89,4 @@ class GeoTest extends PHPUnit_Framework_TestCase
         $bounds = $geo->bounds($coord, $distance);
         $this->assertEquals($expected, $bounds);
     }
-
-    protected function coord($latitude, $longitude) {
-        return new Geo\Coordinate($latitude, $longitude);
-    }
 }
