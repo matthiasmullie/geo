@@ -13,10 +13,15 @@
         }
     ],
     "require": {
-        "php": ">=5.3.0",
-        "ext-pcre": "*"
+        "php": ">=5.3.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "4.3.*",
+        "satooshi/php-coveralls": "dev-master"
     },
     "autoload": {
-        "classmap": [""]
+        "psr-4": {
+            "MatthiasMullie\\Geo\\": "src/"
+        }
     }
 }

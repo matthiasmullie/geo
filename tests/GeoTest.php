@@ -1,9 +1,5 @@
 <?php
 
-require_once __DIR__.'/../Geo.php';
-require_once __DIR__.'/../Coordinate.php';
-require_once __DIR__.'/../Bounds.php';
-
 use MatthiasMullie\Geo;
 
 class GeoTest extends PHPUnit_Framework_TestCase
