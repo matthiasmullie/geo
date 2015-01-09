@@ -21,8 +21,8 @@ class Bounds {
     public $sw;
 
     /**
-     * @param Coordinate $ne North-east coordinate (max lat & lng)
-     * @param Coordinate $sw South-west coordinate (min lat & lng)
+     * @param Coordinate $ne North-east coordinate
+     * @param Coordinate $sw South-west coordinate
      */
     public function __construct(Coordinate $ne, Coordinate $sw) {
         $this->ne = $ne;

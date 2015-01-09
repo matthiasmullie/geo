@@ -116,22 +116,27 @@ class Geo {
      * :nelat being $bounds->ne->latitude
      * :nelng being $bounds->ne->longitude
      *
+     * We only need 2 opposite corners in a rectangle to know all 4 boundaries,
+     * in this case the northeast & southwest coordinate. The northwest
+     * coordinate, for example, will have the same latitude as the southwest
+     * coordinate, and the same latitude as the northeast coordinate.
+     *
      * @param Coordinate $coord Coordinate to generate bounds for
      * @param float $distance Dinstance in human readable format (e.g. km or mi)
      * @return Bounds
      */
     public function bounds(Coordinate $coord, $distance) {
         // latitude boundaries
-        $maxLat = $coord->latitude + rad2deg($distance / $this->radius);
-        $minLat = $coord->latitude - rad2deg($distance / $this->radius);
+        $neLat = $coord->latitude + rad2deg($distance / $this->radius);
+        $swLat = $coord->latitude - rad2deg($distance / $this->radius);
 
         // longitude boundaries (longitude gets smaller when latitude increases)
-        $maxLng = $coord->longitude + rad2deg($distance / $this->radius / cos(deg2rad($coord->latitude)));
-        $minLng = $coord->longitude - rad2deg($distance / $this->radius / cos(deg2rad($coord->latitude)));
+        $neLng = $coord->longitude + rad2deg($distance / $this->radius / cos(deg2rad($coord->latitude)));
+        $swLng = $coord->longitude - rad2deg($distance / $this->radius / cos(deg2rad($coord->latitude)));
 
         return new Bounds(
-            new Coordinate($maxLat, $maxLng),
-            new Coordinate($minLat, $minLng)
+            new Coordinate($neLat, $neLng),
+            new Coordinate($swLat, $swLng)
         );
     }
 }
