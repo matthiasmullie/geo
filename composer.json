@@ -2,6 +2,7 @@
     "name": "matthiasmullie/geo",
     "type": "library",
     "description": "Geography helper",
+    "keywords": ["geo", "geography", "coordinate", "distance", "cluster"],
     "homepage": "https://github.com/matthiasmullie/geo",
     "license": "MIT",
     "authors": [
