@@ -26,14 +26,28 @@ class ClustererTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @expectedException MatthiasMullie\Geo\Exception
+     * @expectedExceptionMessage Sorry, it is not possible to change coordinate saving policy after you have already added coordinates
+     */
+    public function testClusterCoordinatesException()
+    {
+        $clusterer = new Geo\Clusterer(new Geo\Bounds(new Geo\Coordinate(1, 1), new Geo\Coordinate(0, 0)));
+        $clusterer->setMinClusterLocations(1);
+        $clusterer->setNumberOfClusters(10);
+
+        $clusterer->addCoordinate(new Geo\Coordinate(0.5, 0.5));
+        $clusterer->setSaveCoordinates(true);new Geo\Coordinate(0.1, 0.1);
+    }
+
+    /**
      * @test
      * @dataProvider dataProvider
      */
     public function testExtraData(Geo\Bounds $bounds, $coordinates) {
         $clusterer = new Geo\Clusterer($bounds);
         $clusterer->setNumberOfClusters(12);
-
         $clusterer->setMinClusterLocations(3);
+        $clusterer->setSaveCoordinates(true);
 
         foreach ($coordinates as $coordinate) {
             $clusterer->addCoordinate($coordinate);
@@ -70,6 +84,8 @@ class ClustererTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(count($coordinates) - 2, count($clusters));
         $this->assertEquals(3, $clusters[3]->total);
         $this->assertEquals(0, count($clusterer->getCoordinates()));
+        // cluster must also have empty coordinate array
+        $this->assertCount(0, $clusters[0]->coordinates);
     }
 
     /**

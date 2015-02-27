@@ -59,6 +59,11 @@ class Clusterer
     protected $spanBoundsLng = false;
 
     /**
+     * @var bool
+     */
+    protected $saveCoordinates = false;
+
+    /**
      * @param Bounds $bounds
      */
     public function __construct(Bounds $bounds)
@@ -69,6 +74,28 @@ class Clusterer
 
         $this->bounds = $this->fixBounds($bounds);
         $this->createMatrix();
+    }
+
+    /**
+     * Enables coordinate saving in clusters.
+     *
+     * Note that while it allows you to retrieve all Coordinate objects
+     * in a cluster, this does not scale. At some point, if you keep
+     * adding coordinates into clusters, you'll run out of memory
+     * because we're saving all those coordinates.
+     * If you don't need the exact information of coordinates in a
+     * cluster, leave this disabled.
+     *
+     * @param bool $save
+     * @throws Exception
+     */
+    public function setSaveCoordinates($save)
+    {
+        if (count($this->clusters) || count($this->coordinates)) {
+            throw new Exception('Sorry, it is not possible to change coordinate saving policy after you have already added coordinates.');
+        }
+
+        $this->saveCoordinates = $save;
     }
 
     /**
@@ -103,17 +130,18 @@ class Clusterer
 
         // cluster already exists, add coordinate to it
         if (isset($this->clusters[$latIndex][$lngIndex])) {
-            $this->clusters[$latIndex][$lngIndex]->addCoordinate( $coordinate );
+            $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
 
         // there's no cluster yet, but entry limit reached = cluster now
         } elseif ($coordinateCount >= $this->minLocations - 1) {
             // initialise cluster with given coordinate
-            $this->clusters[$latIndex][$lngIndex] = new Cluster($coordinate);
+            $this->clusters[$latIndex][$lngIndex] = new Cluster();
+            $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
 
             if ($coordinateCount) {
                 // add existing coordinates
                 foreach ($this->coordinates[$latIndex][$lngIndex] as $coordinate) {
-                    $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate);
+                    $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
                 }
 
                 // save cluster & clear array of individual coordinates (to free up

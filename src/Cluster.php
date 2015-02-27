@@ -28,34 +28,25 @@ class Cluster {
     /**
      * @var Coordinate[]
      */
-    public $coordinates;
+    public $coordinates = array();
 
     /**
-     * Initialise a cluster.
-     * Needs at least 1 coordinate, but allows overloading.
-     *
      * @param Coordinate $coord
-     * @param Coordinate[optional] $coord
+     * @param bool $save
      */
-    public function __construct(Coordinate $coord, Coordinate $coord2 = null /*, ... */) {
-        $this->coordinates[] = $coord;
-        $this->bounds = new Bounds($coord, $coord);
-        $this->center = $coord;
-        $this->total = 1;
-
-        $coordinates = func_get_args();
-        array_shift($coordinates);
-        foreach ($coordinates as $coord) {
-            $this->addCoordinate($coord);
+    public function addCoordinate(Coordinate $coord, $save) {
+        if ($save) {
+            $this->coordinates[] = $coord;
         }
-    }
 
-    /**
-     * @param Coordinate $coord
-     */
-    public function addCoordinate(Coordinate $coord) {
-        //add to coordinates array
-        $this->coordinates[] = $coord;
+        // initialize the cluster
+        if ($this->total == 0) {
+            $this->bounds = new Bounds($coord, $coord);
+            $this->center = $coord;
+            $this->total = 1;
+
+            return;
+        }
 
         // adjust cluster bounds to include this coordinate
         $this->bounds = new Bounds(
