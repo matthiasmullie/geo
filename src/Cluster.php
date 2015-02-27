@@ -26,6 +26,11 @@ class Cluster {
     public $total = 0;
 
     /**
+     * @var Coordinate[]
+     */
+    public $coordinates;
+
+    /**
      * Initialise a cluster.
      * Needs at least 1 coordinate, but allows overloading.
      *
@@ -33,6 +38,7 @@ class Cluster {
      * @param Coordinate[optional] $coord
      */
     public function __construct(Coordinate $coord, Coordinate $coord2 = null /*, ... */) {
+        $this->coordinates[] = $coord;
         $this->bounds = new Bounds($coord, $coord);
         $this->center = $coord;
         $this->total = 1;
@@ -48,6 +54,9 @@ class Cluster {
      * @param Coordinate $coord
      */
     public function addCoordinate(Coordinate $coord) {
+        //add to coordinates array
+        $this->coordinates[] = $coord;
+
         // adjust cluster bounds to include this coordinate
         $this->bounds = new Bounds(
             new Coordinate(

@@ -13,16 +13,40 @@ class ClustererTest extends PHPUnit_Framework_TestCase
                     new Geo\Coordinate(49.482639, 2.471924)
                 ),
                 'coordinates' => array(
-                    new Geo\Coordinate(50.824167, 3.263889), // Kortrijk railway station
+                    new Geo\Coordinate(50.824167, 3.263889, array('name' => 'Kortrijk')), // Kortrijk railway station
                     new Geo\Coordinate(51.035278, 3.709722), // Gent-Sint-Pieters railway station
                     new Geo\Coordinate(50.881365, 4.715682), // Leuven railway station
                     new Geo\Coordinate(50.860526, 4.361787), // Brussels North railway station
                     new Geo\Coordinate(50.836712, 4.337521), // Brussels South railway station
-                    new Geo\Coordinate(50.845466, 4.357113), // Brussels Central railway station
+                    new Geo\Coordinate(50.845466, 4.357113, array('name' => 'Brussels')), // Brussels Central railway station
                     new Geo\Coordinate(51.216227, 4.421180), // Antwerpen Central railway station
                 ),
             ),
         );
+    }
+
+    /**
+     * @test
+     * @dataProvider dataProvider
+     */
+    public function testExtraData(Geo\Bounds $bounds, $coordinates) {
+        $clusterer = new Geo\Clusterer($bounds);
+        $clusterer->setNumberOfClusters(12);
+
+        $clusterer->setMinClusterLocations(3);
+
+        foreach ($coordinates as $coordinate) {
+            $clusterer->addCoordinate($coordinate);
+        }
+
+        $clusters = $clusterer->getClusters();
+        $coordinates = $clusterer->getCoordinates();
+
+        $this->assertCount($clusters[0]->total, $clusters[0]->coordinates);
+        $this->assertEquals(array('name' => 'Brussels'), $clusters[0]->coordinates[0]->data);
+
+        $this->assertCount(4, $coordinates);
+        $this->assertEquals(array('name' => 'Kortrijk'), $coordinates[0]->data);
     }
 
     /**
