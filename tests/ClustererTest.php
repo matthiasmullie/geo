@@ -4,7 +4,8 @@ use MatthiasMullie\Geo;
 
 class ClustererTest extends PHPUnit_Framework_TestCase
 {
-    public function dataProvider() {
+    public function dataProvider()
+    {
         return array(
             array(
                 'bounds' => new Geo\Bounds(
@@ -36,14 +37,16 @@ class ClustererTest extends PHPUnit_Framework_TestCase
         $clusterer->setNumberOfClusters(10);
 
         $clusterer->addCoordinate(new Geo\Coordinate(0.5, 0.5));
-        $clusterer->setSaveCoordinates(true);new Geo\Coordinate(0.1, 0.1);
+        $clusterer->setSaveCoordinates(true);
+        new Geo\Coordinate(0.1, 0.1);
     }
 
     /**
      * @test
      * @dataProvider dataProvider
      */
-    public function testExtraData(Geo\Bounds $bounds, $coordinates) {
+    public function testExtraData(Geo\Bounds $bounds, $coordinates)
+    {
         $clusterer = new Geo\Clusterer($bounds);
         $clusterer->setNumberOfClusters(12);
         $clusterer->setMinClusterLocations(3);
@@ -67,7 +70,8 @@ class ClustererTest extends PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataProvider
      */
-    public function testClustered(Geo\Bounds $bounds, $coordinates) {
+    public function testClustered(Geo\Bounds $bounds, $coordinates)
+    {
         $clusterer = new Geo\Clusterer($bounds);
         $clusterer->setNumberOfClusters(12);
 
@@ -92,7 +96,8 @@ class ClustererTest extends PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataProvider
      */
-    public function testPartiallyClustered(Geo\Bounds $bounds, $coordinates) {
+    public function testPartiallyClustered(Geo\Bounds $bounds, $coordinates)
+    {
         $clusterer = new Geo\Clusterer($bounds);
         $clusterer->setNumberOfClusters(12);
 
@@ -116,7 +121,8 @@ class ClustererTest extends PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataProvider
      */
-    public function testUnclustered(Geo\Bounds $bounds, $coordinates) {
+    public function testUnclustered(Geo\Bounds $bounds, $coordinates)
+    {
         $clusterer = new Geo\Clusterer($bounds);
         $clusterer->setNumberOfClusters(12);
 

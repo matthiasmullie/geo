@@ -9,7 +9,8 @@ namespace MatthiasMullie\Geo;
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
-class Geo {
+class Geo
+{
     /**
      * Earth's mean radii.
      * Note that earth is not exactly round and so calculations will always be
@@ -48,16 +49,17 @@ class Geo {
     protected $radius;
 
     /**
-     * @param string[optional] $unit e.g. km (kilometers) or mi (miles)
+     * @param  string[optional] $unit e.g. km (kilometers) or mi (miles)
      * @throws Exception
      */
-    public function __construct($unit = 'km') {
+    public function __construct($unit = 'km')
+    {
         $unit = strtolower($unit);
 
         // doublecheck if given unit is valid
         $units = array_keys($this->radii);
         if (!in_array($unit, $units)) {
-            throw new Exception("Distance unit $unit is invalid. Valid units: " . implode(', ', $units));
+            throw new Exception("Distance unit $unit is invalid. Valid units: ".implode(', ', $units));
         }
 
         $this->unit = $unit;
@@ -70,8 +72,9 @@ class Geo {
      *
      * @param float[optional] $radius
      */
-    public function setRadius($radius = null) {
-        if ( $radius === null ) {
+    public function setRadius($radius = null)
+    {
+        if ($radius === null) {
             $radius = $this->radii[$this->unit];
         }
 
@@ -80,11 +83,12 @@ class Geo {
 
     /**
      * @see http://en.wikipedia.org/wiki/Great-circle_distance
-     * @param Coordinate $coord1 First coordinate
-     * @param Coordinate $coord2 Second coordinate
-     * @return float Actual distance in human readable format (e.g. km or mi)
+     * @param  Coordinate $coord1 First coordinate
+     * @param  Coordinate $coord2 Second coordinate
+     * @return float      Actual distance in human readable format (e.g. km or mi)
      */
-    public function distance(Coordinate $coord1, Coordinate $coord2) {
+    public function distance(Coordinate $coord1, Coordinate $coord2)
+    {
         // convert latitude/longitude degrees for both coordinates
         // to radians: radian = degree * π / 180
         $lat1 = deg2rad($coord1->latitude);
@@ -121,11 +125,12 @@ class Geo {
      * coordinate, for example, will have the same latitude as the southwest
      * coordinate, and the same latitude as the northeast coordinate.
      *
-     * @param Coordinate $coord Coordinate to generate bounds for
-     * @param float $distance Dinstance in human readable format (e.g. km or mi)
+     * @param  Coordinate $coord    Coordinate to generate bounds for
+     * @param  float      $distance Dinstance in human readable format (e.g. km or mi)
      * @return Bounds
      */
-    public function bounds(Coordinate $coord, $distance) {
+    public function bounds(Coordinate $coord, $distance)
+    {
         // latitude boundaries
         $neLat = $coord->latitude + rad2deg($distance / $this->radius);
         $swLat = $coord->latitude - rad2deg($distance / $this->radius);

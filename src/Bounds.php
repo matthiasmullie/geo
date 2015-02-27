@@ -9,7 +9,8 @@ namespace MatthiasMullie\Geo;
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
-class Bounds {
+class Bounds
+{
     /**
      * @var Coordinate
      */
@@ -24,7 +25,8 @@ class Bounds {
      * @param Coordinate $ne North-east coordinate
      * @param Coordinate $sw South-west coordinate
      */
-    public function __construct(Coordinate $ne, Coordinate $sw) {
+    public function __construct(Coordinate $ne, Coordinate $sw)
+    {
         $this->ne = $ne;
         $this->sw = $sw;
     }

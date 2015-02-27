@@ -9,7 +9,8 @@ namespace MatthiasMullie\Geo;
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
-class Coordinate {
+class Coordinate
+{
     /**
      * @var float
      */
@@ -30,7 +31,8 @@ class Coordinate {
      * @param float $longitude
      * @param array $data
      */
-    public function __construct($latitude, $longitude, $data = array()) {
+    public function __construct($latitude, $longitude, $data = array())
+    {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
         $this->data = $data;

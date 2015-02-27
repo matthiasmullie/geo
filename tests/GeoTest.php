@@ -4,7 +4,8 @@ use MatthiasMullie\Geo;
 
 class GeoTest extends PHPUnit_Framework_TestCase
 {
-    public function dataProviderDistance() {
+    public function dataProviderDistance()
+    {
         return array(
             array(
                 // Kortrijk railway station
@@ -25,7 +26,8 @@ class GeoTest extends PHPUnit_Framework_TestCase
         );
     }
 
-    public function dataProviderBounds() {
+    public function dataProviderBounds()
+    {
         return array(
             array(
                 // Kortrijk railway station
@@ -35,7 +37,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
                 'bounds' => new Geo\Bounds(
                     new Geo\Coordinate(50.914099160592, 3.4062537646061),
                     new Geo\Coordinate(50.734234839408, 3.1215242353939)
-                )
+                ),
             ),
             array(
                 // Gent-Sint-Pieters railway station
@@ -45,7 +47,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
                 'bounds' => new Geo\Bounds(
                     new Geo\Coordinate(51.125210160592, 3.8527343839376),
                     new Geo\Coordinate(50.945345839408, 3.5667096160624)
-                )
+                ),
             ),
             array(
                 // SFO airport
@@ -55,7 +57,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
                 'bounds' => new Geo\Bounds(
                     new Geo\Coordinate(37.759945858078, -122.20727553192),
                     new Geo\Coordinate(37.470500141922, -122.57267846808)
-                )
+                ),
             ),
             array(
                 // JFK airport
@@ -65,7 +67,7 @@ class GeoTest extends PHPUnit_Framework_TestCase
                 'bounds' => new Geo\Bounds(
                     new Geo\Coordinate(40.784444858078, -73.588168056428),
                     new Geo\Coordinate(40.494999141922, -73.969609943572)
-                )
+                ),
             ),
         );
     }
@@ -74,7 +76,8 @@ class GeoTest extends PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataProviderDistance
      */
-    public function distance($coord1, $coord2, $unit, $expected) {
+    public function distance($coord1, $coord2, $unit, $expected)
+    {
         $geo = new Geo\Geo($unit);
         $distance = $geo->distance($coord1, $coord2);
         $this->assertEquals($expected, $distance);
@@ -84,7 +87,8 @@ class GeoTest extends PHPUnit_Framework_TestCase
      * @test
      * @dataProvider dataProviderBounds
      */
-    public function bounds($coord, $unit, $distance, $expected) {
+    public function bounds($coord, $unit, $distance, $expected)
+    {
         $geo = new Geo\Geo($unit);
         $bounds = $geo->bounds($coord, $distance);
         $this->assertEquals($expected, $bounds);

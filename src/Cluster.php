@@ -9,7 +9,8 @@ namespace MatthiasMullie\Geo;
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
-class Cluster {
+class Cluster
+{
     /**
      * @var Bounds
      */
@@ -32,9 +33,10 @@ class Cluster {
 
     /**
      * @param Coordinate $coord
-     * @param bool $save
+     * @param bool       $save
      */
-    public function addCoordinate(Coordinate $coord, $save) {
+    public function addCoordinate(Coordinate $coord, $save)
+    {
         if ($save) {
             $this->coordinates[] = $coord;
         }

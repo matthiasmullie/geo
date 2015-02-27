@@ -86,7 +86,7 @@ class Clusterer
      * If you don't need the exact information of coordinates in a
      * cluster, leave this disabled.
      *
-     * @param bool $save
+     * @param  bool      $save
      * @throws Exception
      */
     public function setSaveCoordinates($save)
@@ -162,6 +162,7 @@ class Clusterer
     {
         // flatten matrix of coordinates
         $coordinates = $this->coordinates ? call_user_func_array('array_merge', $this->coordinates) : array();
+
         return $coordinates ? call_user_func_array('array_merge', $coordinates) : array();
     }
 
@@ -198,7 +199,7 @@ class Clusterer
      * Find the lat & lng indices of the matrix cell
      * the given coordinate fits into.
      *
-     * @param Coordinate $coordinate
+     * @param  Coordinate $coordinate
      * @return array
      */
     protected function findCell(Coordinate $coordinate)
@@ -215,7 +216,7 @@ class Clusterer
      * "Fix" coordinates - when leaping from east 360 to west -359, increase
      * the west coordinated by 360 to make calculating easier.
      *
-     * @param Coordinate $coordinate
+     * @param  Coordinate $coordinate
      * @return Coordinate
      */
     protected function fixCoordinates(Coordinate $coordinate)
@@ -242,7 +243,7 @@ class Clusterer
      * (= negative) coordinates by 360, and consider those to now be east
      * (and east as west). Now, coordinates will go from 360 to 361.
      *
-     * @param Bounds $bounds
+     * @param  Bounds $bounds
      * @return Bounds
      */
     protected function fixBounds(Bounds $bounds)
