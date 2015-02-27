@@ -38,7 +38,6 @@ class ClustererTest extends PHPUnit_Framework_TestCase
 
         $clusterer->addCoordinate(new Geo\Coordinate(0.5, 0.5));
         $clusterer->setSaveCoordinates(true);
-        new Geo\Coordinate(0.1, 0.1);
     }
 
     /**
