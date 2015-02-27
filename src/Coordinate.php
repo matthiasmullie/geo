@@ -21,11 +21,18 @@ class Coordinate {
     public $longitude;
 
     /**
+     * @var array
+     */
+    public $data;
+
+    /**
      * @param float $latitude
      * @param float $longitude
+     * @param array $data
      */
-    public function __construct($latitude, $longitude) {
+    public function __construct($latitude, $longitude, $data = array()) {
         $this->latitude = $latitude;
         $this->longitude = $longitude;
+        $this->data = $data;
     }
 }
