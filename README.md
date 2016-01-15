@@ -1,7 +1,7 @@
 # Geo
 
 [![Build status](https://api.travis-ci.org/matthiasmullie/geo.svg?branch=master)](https://travis-ci.org/matthiasmullie/geo)
-[![Code coverage](http://img.shields.io/coveralls/matthiasmullie/geo.svg)](https://coveralls.io/r/matthiasmullie/geo)
+[![Code coverage](http://img.shields.io/codecov/c/github/matthiasmullie/geo.svg)](https://codecov.io/github/matthiasmullie/geo)
 [![Code quality](http://img.shields.io/scrutinizer/g/matthiasmullie/geo.svg)](https://scrutinizer-ci.com/g/matthiasmullie/geo)
 [![Latest version](http://img.shields.io/packagist/v/matthiasmullie/geo.svg)](https://packagist.org/packages/matthiasmullie/geo)
 [![Downloads total](http://img.shields.io/packagist/dt/matthiasmullie/geo.svg)](https://packagist.org/packages/matthiasmullie/geo)
