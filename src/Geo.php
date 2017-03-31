@@ -131,6 +131,11 @@ class Geo
      */
     public function bounds(Coordinate $coord, $distance)
     {
+        // Simple sanity check: distance cannot be greater than radius
+    	if($distance > $this->radius)
+    	{
+    		$distance = $this->radius;
+    	}
         // latitude boundaries
         $neLat = $coord->latitude + rad2deg($distance / $this->radius);
         $swLat = $coord->latitude - rad2deg($distance / $this->radius);
