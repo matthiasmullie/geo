@@ -126,7 +126,7 @@ class Geo
      * coordinate, and the same latitude as the northeast coordinate.
      *
      * @param  Coordinate $coord    Coordinate to generate bounds for
-     * @param  float      $distance Dinstance in human readable format (e.g. km or mi)
+     * @param  float      $distance Distance in human readable format (e.g. km or mi)
      * @return Bounds
      */
     public function bounds(Coordinate $coord, $distance)
