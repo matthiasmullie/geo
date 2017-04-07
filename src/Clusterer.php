@@ -21,7 +21,7 @@ class Clusterer
      *
      * @var int
      */
-    protected $minLocations = 1;
+    protected $minLocations = 2;
 
     /**
      * @var int
@@ -105,7 +105,8 @@ class Clusterer
      */
     public function setMinClusterLocations($limit)
     {
-        $this->minLocations = $limit;
+        // simple sanity check. It doesn't make sense to have clusters with less than 2 locations
+        $this->minLocations = (int)($limit > 2 ? $limit : 0); 
     }
 
     /**
