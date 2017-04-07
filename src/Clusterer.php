@@ -133,8 +133,8 @@ class Clusterer
         if (isset($this->clusters[$latIndex][$lngIndex])) {
             $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
 
-        // there's no cluster yet, but entry limit reached = cluster now
-        } elseif ($coordinateCount >= $this->minLocations - 1) {
+        // there's no cluster yet, but entry limit reached = cluster now, as long as we have more than one location/coordinate
+        } elseif ($coordinateCount >= $this->minLocations - 1 && $coordinateCount > 1) { 
             // initialise cluster with given coordinate
             $this->clusters[$latIndex][$lngIndex] = new Cluster();
             $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
