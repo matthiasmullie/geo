@@ -1,11 +1,11 @@
 <?php
+
 namespace MatthiasMullie\Geo;
 
 /**
- * Please report bugs on https://github.com/matthiasmullie/geo/issues
+ * Please report bugs on https://github.com/matthiasmullie/geo/issues.
  *
  * @author Matthias Mullie <geo@mullie.eu>
- *
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
@@ -63,9 +63,6 @@ class Clusterer
      */
     protected $saveCoordinates = false;
 
-    /**
-     * @param Bounds $bounds
-     */
     public function __construct(Bounds $bounds)
     {
         // determine if bounds span 360 to -360 degrees gap
@@ -86,7 +83,8 @@ class Clusterer
      * If you don't need the exact information of coordinates in a
      * cluster, leave this disabled.
      *
-     * @param  bool      $save
+     * @param bool $save
+     *
      * @throws Exception
      */
     public function setSaveCoordinates($save)
@@ -120,9 +118,6 @@ class Clusterer
         $this->numberOfClusters = $number;
     }
 
-    /**
-     * @param Coordinate $coordinate
-     */
     public function addCoordinate(Coordinate $coordinate)
     {
         list($latIndex, $lngIndex) = $this->findCell($coordinate);
@@ -191,15 +186,14 @@ class Clusterer
 
         // this will be used later to calculate exactly which sector a
         // coordinate falls into (see findCell)
-        $this->coefficientLat = 1 / ($totalLat) * $numLat;
-        $this->coefficientLng = 1 / ($totalLng) * $numLng;
+        $this->coefficientLat = 1 / $totalLat * $numLat;
+        $this->coefficientLng = 1 / $totalLng * $numLng;
     }
 
     /**
      * Find the lat & lng indices of the matrix cell
      * the given coordinate fits into.
      *
-     * @param  Coordinate $coordinate
      * @return array
      */
     protected function findCell(Coordinate $coordinate)
@@ -216,7 +210,6 @@ class Clusterer
      * "Fix" coordinates - when leaping from east 360 to west -359, increase
      * the west coordinated by 360 to make calculating easier.
      *
-     * @param  Coordinate $coordinate
      * @return Coordinate
      */
     protected function fixCoordinates(Coordinate $coordinate)
@@ -234,6 +227,7 @@ class Clusterer
 
         return $coordinate;
     }
+
     /**
      * North and east coordinates can actually be lower than south & west.
      * This will happen when the left side of a map is displaying east and
@@ -243,7 +237,6 @@ class Clusterer
      * (= negative) coordinates by 360, and consider those to now be east
      * (and east as west). Now, coordinates will go from 360 to 361.
      *
-     * @param  Bounds $bounds
      * @return Bounds
      */
     protected function fixBounds(Bounds $bounds)
@@ -253,7 +246,7 @@ class Clusterer
 
         if ($this->spanBoundsLat) {
             // workaround for crossover bounds being rounded too aggressively
-            if ($bounds->sw->latitude == 0) {
+            if ($bounds->sw->latitude === 0) {
                 $bounds->sw->latitude += 180;
             }
 
@@ -263,7 +256,7 @@ class Clusterer
         }
         if ($this->spanBoundsLng) {
             // workaround for crossover bounds being rounded too aggressively
-            if ($bounds->sw->longitude == 0) {
+            if ($bounds->sw->longitude === 0) {
                 $bounds->sw->longitude += 360;
             }
 

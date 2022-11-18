@@ -1,11 +1,11 @@
 <?php
+
 namespace MatthiasMullie\Geo;
 
 /**
- * Please report bugs on https://github.com/matthiasmullie/geo/issues
+ * Please report bugs on https://github.com/matthiasmullie/geo/issues.
  *
  * @author Matthias Mullie <geo@mullie.eu>
- *
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
@@ -17,6 +17,7 @@ class Geo
      * slightly off.
      *
      * @see http://en.wikipedia.org/wiki/Earth_radius
+     *
      * @var float[]
      */
     protected $radii = array(
@@ -50,6 +51,7 @@ class Geo
 
     /**
      * @param  string[optional] $unit e.g. km (kilometers) or mi (miles)
+     *
      * @throws Exception
      */
     public function __construct($unit = 'km')
@@ -58,8 +60,8 @@ class Geo
 
         // doublecheck if given unit is valid
         $units = array_keys($this->radii);
-        if (!in_array($unit, $units)) {
-            throw new Exception("Distance unit $unit is invalid. Valid units: ".implode(', ', $units));
+        if (!in_array($unit, $units, true)) {
+            throw new Exception("Distance unit $unit is invalid. Valid units: " . implode(', ', $units));
         }
 
         $this->unit = $unit;
@@ -83,9 +85,11 @@ class Geo
 
     /**
      * @see http://en.wikipedia.org/wiki/Great-circle_distance
-     * @param  Coordinate $coord1 First coordinate
-     * @param  Coordinate $coord2 Second coordinate
-     * @return float      Actual distance in human readable format (e.g. km or mi)
+     *
+     * @param Coordinate $coord1 First coordinate
+     * @param Coordinate $coord2 Second coordinate
+     *
+     * @return float Actual distance in human readable format (e.g. km or mi)
      */
     public function distance(Coordinate $coord1, Coordinate $coord2)
     {
@@ -125,8 +129,9 @@ class Geo
      * coordinate, for example, will have the same latitude as the southwest
      * coordinate, and the same latitude as the northeast coordinate.
      *
-     * @param  Coordinate $coord    Coordinate to generate bounds for
-     * @param  float      $distance Distance in human readable format (e.g. km or mi)
+     * @param Coordinate $coord    Coordinate to generate bounds for
+     * @param float      $distance Distance in human readable format (e.g. km or mi)
+     *
      * @return Bounds
      */
     public function bounds(Coordinate $coord, $distance)

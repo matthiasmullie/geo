@@ -1,20 +1,19 @@
 # Geo
 
-[![Build status](https://api.travis-ci.org/matthiasmullie/geo.svg?branch=master)](https://travis-ci.org/matthiasmullie/geo)
-[![Code coverage](http://img.shields.io/codecov/c/github/matthiasmullie/geo.svg)](https://codecov.io/github/matthiasmullie/geo)
-[![Code quality](http://img.shields.io/scrutinizer/g/matthiasmullie/geo.svg)](https://scrutinizer-ci.com/g/matthiasmullie/geo)
-[![Latest version](http://img.shields.io/packagist/v/matthiasmullie/geo.svg)](https://packagist.org/packages/matthiasmullie/geo)
-[![Downloads total](http://img.shields.io/packagist/dt/matthiasmullie/geo.svg)](https://packagist.org/packages/matthiasmullie/geo)
-[![License](http://img.shields.io/packagist/l/matthiasmullie/geo.svg)](https://github.com/matthiasmullie/geo/blob/master/LICENSE)
+[![Build status](https://img.shields.io/github/workflow/status/matthiasmullie/geo/test-suite?style=flat-square)](https://github.com/matthiasmullie/geo/actions/workflows/test.yml)
+[![Code coverage](http://img.shields.io/codecov/c/gh/matthiasmullie/geo?style=flat-square)](https://codecov.io/gh/matthiasmullie/geo)
+[![Latest version](http://img.shields.io/packagist/v/matthiasmullie/geo?style=flat-square)](https://packagist.org/packages/matthiasmullie/geo)
+[![Downloads total](http://img.shields.io/packagist/dt/matthiasmullie/geo?style=flat-square)](https://packagist.org/packages/matthiasmullie/geo)
+[![License](http://img.shields.io/packagist/l/matthiasmullie/geo?style=flat-square)](https://github.com/matthiasmullie/geo/blob/master/LICENSE)
 
-I strongly suggest reading some background information at http://www.mullie.eu/geographic-searches/
+I strongly suggest reading some background information at https://www.mullie.eu/geographic-searches/
 
 
 ## Usage
 
 ### Find anything in a 10km radius of Kortrijk railway station
 
-The Geo class is particularly useful to do simple distance-based calculations:
+The `Geo` class is particularly useful to do simple distance-based calculations:
 
 ```php
 $geo = new Geo\Geo('km');
@@ -58,11 +57,11 @@ foreach ($results as $i => $result) {
 
 ### Cluster coordinates
 
-The Clusterer class can be useful when dealing with a huge amount of locations.
+The `Clusterer` class can be useful when dealing with a huge amount of locations.
 E.g. you want to display thousands of locations on a map. Google Maps (and
 probably others too) can create clusters too, but you'll still have to get all
 locations to your frontend. Instead of outputting all coordinates and waiting
-for the full list to load, we can do the clusting in PHP already & serve that
+for the full list to load, we can do the clustering in PHP already & serve that
 frontend of yours a more lightweight selection of coordinates!
 
 ```php
@@ -98,7 +97,7 @@ $clusterer->getCoordinates(); // returns 4 non-clustered coordinates
 
 ## Installation
 
-Simply add a dependency on matthiasmullie/geo to your composer.json file if you use [Composer](https://getcomposer.org/) to manage the dependencies of your project:
+Simply add a dependency on `matthiasmullie/geo` to your composer.json file if you use [Composer](https://getcomposer.org/) to manage the dependencies of your project:
 
 ```sh
 composer require matthiasmullie/geo

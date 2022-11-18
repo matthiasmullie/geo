@@ -1,11 +1,11 @@
 <?php
+
 namespace MatthiasMullie\Geo;
 
 /**
- * Please report bugs on https://github.com/matthiasmullie/geo/issues
+ * Please report bugs on https://github.com/matthiasmullie/geo/issues.
  *
  * @author Matthias Mullie <geo@mullie.eu>
- *
  * @copyright Copyright (c) 2013, Matthias Mullie. All rights reserved.
  * @license MIT License
  */
@@ -32,8 +32,7 @@ class Cluster
     public $coordinates = array();
 
     /**
-     * @param Coordinate $coord
-     * @param bool       $save
+     * @param bool $save
      */
     public function addCoordinate(Coordinate $coord, $save)
     {
@@ -42,7 +41,7 @@ class Cluster
         }
 
         // initialize the cluster
-        if ($this->total == 0) {
+        if ($this->total === 0) {
             $this->bounds = new Bounds($coord, $coord);
             $this->center = $coord;
             $this->total = 1;
@@ -54,12 +53,12 @@ class Cluster
         $this->bounds = new Bounds(
             new Coordinate(
                 // these shorthand ifs are equivalent to min() and max(), but faster
-                $this->bounds->ne->latitude > $coord->latitude ? $this->bounds->ne->latitude : $coord->latitude,
-                $this->bounds->ne->longitude > $coord->longitude ? $this->bounds->ne->longitude : $coord->longitude
+                max($this->bounds->ne->latitude, $coord->latitude),
+                max($this->bounds->ne->longitude, $coord->longitude)
             ),
             new Coordinate(
-                $this->bounds->sw->latitude < $coord->latitude ? $this->bounds->sw->latitude : $coord->latitude,
-                $this->bounds->sw->longitude < $coord->longitude ? $this->bounds->sw->longitude : $coord->longitude
+                min($this->bounds->sw->latitude, $coord->latitude),
+                min($this->bounds->sw->longitude, $coord->longitude)
             )
         );
 
@@ -69,6 +68,6 @@ class Cluster
             (($this->center->longitude * $this->total) + $coord->longitude) / ($this->total + 1)
         );
 
-        $this->total++;
+        ++$this->total;
     }
 }

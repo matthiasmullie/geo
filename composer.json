@@ -8,7 +8,7 @@
     "authors": [
         {
             "name": "Matthias Mullie",
-            "homepage": "http://www.mullie.eu",
+            "homepage": "https://www.mullie.eu",
             "email": "geo@mullie.eu",
             "role": "Developer"
         }
@@ -17,11 +17,18 @@
         "php": ">=5.3.0"
     },
     "require-dev": {
-        "phpunit/phpunit": "~4.8"
+        "phpunit/phpunit": ">=4.8",
+        "friendsofphp/php-cs-fixer": ">=2.0",
+        "squizlabs/php_codesniffer": ">=3.0"
     },
     "autoload": {
         "psr-4": {
             "MatthiasMullie\\Geo\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "MatthiasMullie\\Geo\\Tests\\": "tests/"
         }
     }
 }
