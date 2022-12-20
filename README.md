@@ -1,6 +1,6 @@
 # Geo
 
-[![Build status](https://img.shields.io/github/workflow/status/matthiasmullie/geo/test-suite?style=flat-square)](https://github.com/matthiasmullie/geo/actions/workflows/test.yml)
+[![Build status](https://img.shields.io/github/actions/workflow/status/matthiasmullie/geo/test.yml?branch=master&style=flat-square)](https://github.com/matthiasmullie/geo/actions/workflows/test.yml)
 [![Code coverage](http://img.shields.io/codecov/c/gh/matthiasmullie/geo?style=flat-square)](https://codecov.io/gh/matthiasmullie/geo)
 [![Latest version](http://img.shields.io/packagist/v/matthiasmullie/geo?style=flat-square)](https://packagist.org/packages/matthiasmullie/geo)
 [![Downloads total](http://img.shields.io/packagist/dt/matthiasmullie/geo?style=flat-square)](https://packagist.org/packages/matthiasmullie/geo)
