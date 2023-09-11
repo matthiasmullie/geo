@@ -21,7 +21,7 @@ class Clusterer
      *
      * @var int
      */
-    protected $minLocations = 1;
+    protected $minLocations = 2;
 
     /**
      * @var int
@@ -103,7 +103,8 @@ class Clusterer
      */
     public function setMinClusterLocations($limit)
     {
-        $this->minLocations = $limit;
+        // simple sanity check. It doesn't make sense to have clusters with less than 2 locations
+        $this->minLocations = (int)($limit > 2 ? $limit : 0); 
     }
 
     /**
@@ -132,8 +133,8 @@ class Clusterer
         if (isset($this->clusters[$latIndex][$lngIndex])) {
             $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
 
-        // there's no cluster yet, but entry limit reached = cluster now
-        } elseif ($coordinateCount >= $this->minLocations - 1) {
+        // there's no cluster yet, but entry limit reached = cluster now, as long as we have more than one location/coordinate
+        } elseif ($coordinateCount >= $this->minLocations - 1 && $coordinateCount > 1) { 
             // initialise cluster with given coordinate
             $this->clusters[$latIndex][$lngIndex] = new Cluster();
             $this->clusters[$latIndex][$lngIndex]->addCoordinate($coordinate, $this->saveCoordinates);
