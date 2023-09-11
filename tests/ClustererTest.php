@@ -8,7 +8,7 @@ use MatthiasMullie\Geo\Coordinate;
 
 class ClustererTest extends CompatTestCase
 {
-    public function dataProvider()
+    public static function dataProvider()
     {
         return array(
             array(
@@ -48,7 +48,7 @@ class ClustererTest extends CompatTestCase
     public function testExtraData(Bounds $bounds, $coordinates)
     {
         $clusterer = new Clusterer($bounds);
-        $clusterer->setNumberOfClusters(12);
+        $clusterer->setNumberOfClusters(50);
         $clusterer->setMinClusterLocations(3);
         $clusterer->setSaveCoordinates(true);
 
@@ -72,7 +72,7 @@ class ClustererTest extends CompatTestCase
     public function testClustered(Bounds $bounds, $coordinates)
     {
         $clusterer = new Clusterer($bounds);
-        $clusterer->setNumberOfClusters(12);
+        $clusterer->setNumberOfClusters(50);
 
         // 1 location per cell is enough to form a cluster
         $clusterer->setMinClusterLocations(1);
@@ -97,7 +97,7 @@ class ClustererTest extends CompatTestCase
     public function testPartiallyClustered(Bounds $bounds, $coordinates)
     {
         $clusterer = new Clusterer($bounds);
-        $clusterer->setNumberOfClusters(12);
+        $clusterer->setNumberOfClusters(50);
 
         // some coordinates should be clustered, as soon as there's > 1 per
         // matrix cell
@@ -121,7 +121,7 @@ class ClustererTest extends CompatTestCase
     public function testUnclustered(Bounds $bounds, $coordinates)
     {
         $clusterer = new Clusterer($bounds);
-        $clusterer->setNumberOfClusters(12);
+        $clusterer->setNumberOfClusters(50);
 
         // make sure coordinates aren't clustered!
         $clusterer->setMinClusterLocations(99);

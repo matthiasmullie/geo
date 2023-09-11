@@ -33,8 +33,8 @@ class Coordinate
      */
     public function __construct($latitude, $longitude, $data = array())
     {
-        $this->latitude = $latitude;
-        $this->longitude = $longitude;
+        $this->latitude = (float) $latitude;
+        $this->longitude = (float) $longitude;
         $this->data = $data;
     }
 }

@@ -70,7 +70,7 @@ class Clusterer
         $this->spanBoundsLat = $bounds->ne->latitude < $bounds->sw->latitude;
 
         $this->bounds = $this->fixBounds($bounds);
-        $this->createMatrix();
+        $this->setNumberOfClusters($this->numberOfClusters);
     }
 
     /**
@@ -115,7 +115,12 @@ class Clusterer
      */
     public function setNumberOfClusters($number)
     {
+        if (count($this->clusters) || count($this->coordinates)) {
+            throw new Exception('Sorry, it is not possible to change the number of clusters after you have already added coordinates.');
+        }
+
         $this->numberOfClusters = $number;
+        $this->createMatrix();
     }
 
     public function addCoordinate(Coordinate $coordinate)
@@ -246,7 +251,7 @@ class Clusterer
 
         if ($this->spanBoundsLat) {
             // workaround for crossover bounds being rounded too aggressively
-            if ($bounds->sw->latitude === 0) {
+            if ($bounds->sw->latitude <= 0.0) {
                 $bounds->sw->latitude += 180;
             }
 
@@ -256,7 +261,7 @@ class Clusterer
         }
         if ($this->spanBoundsLng) {
             // workaround for crossover bounds being rounded too aggressively
-            if ($bounds->sw->longitude === 0) {
+            if ($bounds->sw->longitude <= 0.0) {
                 $bounds->sw->longitude += 360;
             }
 

@@ -8,7 +8,7 @@ use MatthiasMullie\Geo\Geo;
 
 class GeoTest extends CompatTestCase
 {
-    public function dataProviderDistance()
+    public static function dataProviderDistance()
     {
         return array(
             array(
@@ -30,7 +30,7 @@ class GeoTest extends CompatTestCase
         );
     }
 
-    public function dataProviderBounds()
+    public static function dataProviderBounds()
     {
         return array(
             array(
